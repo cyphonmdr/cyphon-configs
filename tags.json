@@ -1,0 +1,632 @@
+[
+{
+  "model": "articles.article",
+  "fields": {
+    "title": "Port 21",
+    "content": "File Transfer Protocol (FTP) control (command)"
+  }
+},
+{
+  "model": "articles.article",
+  "fields": {
+    "title": "Port 53",
+    "content": "Domain Name System (DNS)"
+  }
+},
+{
+  "model": "articles.article",
+  "fields": {
+    "title": "Port 80",
+    "content": "Hypertext Transfer Protocol (HTTP)"
+  }
+},
+{
+  "model": "articles.article",
+  "fields": {
+    "title": "Port 137",
+    "content": "NetBIOS Name Service, used for name registration and resolution"
+  }
+},
+{
+  "model": "articles.article",
+  "fields": {
+    "title": "Port 443",
+    "content": "Hypertext Transfer Protocol over TLS/SSL (HTTPS)"
+  }
+},
+{
+  "model": "articles.article",
+  "fields": {
+    "title": "Port 4568",
+    "content": "BMC Reporting"
+  }
+},
+{
+  "model": "articles.article",
+  "fields": {
+    "title": "TCP",
+    "content": "Transmission Control Protocol"
+  }
+},
+{
+  "model": "articles.article",
+  "fields": {
+    "title": "UDP",
+    "content": "User Datagram Protocol"
+  }
+},
+{
+  "model": "articles.article",
+  "fields": {
+    "title": "Attempted Administrator Privilege Gain",
+    "content": ""
+  }
+},
+{
+  "model": "articles.article",
+  "fields": {
+    "title": "Attempted Information Leak",
+    "content": ""
+  }
+},
+{
+  "model": "articles.article",
+  "fields": {
+    "title": "Attempted User Privilege Gain",
+    "content": ""
+  }
+},
+{
+  "model": "articles.article",
+  "fields": {
+    "title": "Generic Protocol Command Decode",
+    "content": ""
+  }
+},
+{
+  "model": "articles.article",
+  "fields": {
+    "title": "Misc activity",
+    "content": ""
+  }
+},
+{
+  "model": "articles.article",
+  "fields": {
+    "title": "Potentially Bad Traffic",
+    "content": ""
+  }
+},
+{
+  "model": "articles.article",
+  "fields": {
+    "title": "Unknown Traffic",
+    "content": ""
+  }
+},
+{
+  "model": "articles.article",
+  "fields": {
+    "title": "Sid 1-8478",
+    "content": "FILE-IDENTIFY Microsoft Office Publisher file magic detected"
+  }
+},
+{
+  "model": "articles.article",
+  "fields": {
+    "title": "Sid 1-31978",
+    "content": "OS-OTHER Bash CGI environment variable injection attempt"
+  }
+},
+{
+  "model": "articles.article",
+  "fields": {
+    "title": "Sid 1-33427",
+    "content": "BROWSER-IE Microsoft Internet Explorer CMarkupTransNavContext object use after free attempt"
+  }
+},
+{
+  "model": "articles.article",
+  "fields": {
+    "title": "Sid 1-40356",
+    "content": "PUA-ADWARE Win.Trojan.InstantAccess variant outbound connection"
+  }
+},
+{
+  "model": "articles.article",
+  "fields": {
+    "title": "Sid 1-40357",
+    "content": "PUA-ADWARE Win.Trojan.InstantAccess variant outbound connection"
+  }
+},
+{
+  "model": "articles.article",
+  "fields": {
+    "title": "Sid 1-41573",
+    "content": "BROWSER-IE Microsoft Edge CSS animation style information disclosure attempt"
+  }
+},
+{
+  "model": "articles.article",
+  "fields": {
+    "title": "Sid 1-41818",
+    "content": "SERVER-APACHE Apache Struts remote code execution attempt"
+  }
+},
+{
+  "model": "articles.article",
+  "fields": {
+    "title": "Sid 1-41819",
+    "content": "SERVER-APACHE Apache Struts remote code execution attempt"
+  }
+},
+{
+  "model": "articles.article",
+  "fields": {
+    "title": "Sid 1-42210",
+    "content": "BROWSER-IE Microsoft Edge xlink type confusion memory corruption attempt"
+  }
+},
+{
+  "model": "articles.article",
+  "fields": {
+    "title": "Sid 119-20",
+    "content": "http_inspect: MAX HEADERS"
+  }
+},
+{
+  "model": "articles.article",
+  "fields": {
+    "title": "Sid 120-11",
+    "content": "http_inspect: MULTIPLE ENCODINGS WITHIN JAVASCRIPT OBFUSCATED DATA"
+  }
+},
+{
+  "model": "articles.article",
+  "fields": {
+    "title": "Sid 123-12",
+    "content": "frag3: Number of overlapping fragments exceed configured limit"
+  }
+},
+{
+  "model": "articles.article",
+  "fields": {
+    "title": "Sid 124-1",
+    "content": "smtp: Attempted command buffer overflow"
+  }
+},
+{
+  "model": "articles.article",
+  "fields": {
+    "title": "Sid 125-1",
+    "content": "ftp_pp: Telnet command on FTP command channel"
+  }
+},
+{
+  "model": "articles.article",
+  "fields": {
+    "title": "Sid 125-2",
+    "content": "ftp_pp: Invalid FTP command"
+  }
+},
+{
+  "model": "articles.article",
+  "fields": {
+    "title": "Sid 125-3",
+    "content": "ftp_pp: FTP parameter length overflow"
+  }
+},
+{
+  "model": "articles.article",
+  "fields": {
+    "title": "Sid 129-7",
+    "content": "stream5: Limit on number of overlapping TCP packets reached"
+  }
+},
+{
+  "model": "articles.article",
+  "fields": {
+    "title": "Sid 129-11",
+    "content": "stream5: TCP Data with no TCP Flags set"
+  }
+},
+{
+  "model": "articles.article",
+  "fields": {
+    "title": "Sid 129-13",
+    "content": "stream5: TCP 4-way handshake detected"
+  }
+},
+{
+  "model": "articles.article",
+  "fields": {
+    "title": "Sid 129-18",
+    "content": "stream5: Data sent on stream after TCP Reset received"
+  }
+},
+{
+  "model": "articles.article",
+  "fields": {
+    "title": "Sid 129-19",
+    "content": "stream5: TCP window closed before receiving data"
+  }
+},
+{
+  "model": "articles.article",
+  "fields": {
+    "title": "Sid 133-30",
+    "content": "dcerpc2: Connection-oriented DCE/RPC - Fragment length less than header size"
+  }
+},
+{
+  "model": "articles.article",
+  "fields": {
+    "title": "Sid 133-32",
+    "content": "dcerpc2: Connection-oriented DCE/RPC - No context items specified"
+  }
+},
+{
+  "model": "articles.article",
+  "fields": {
+    "title": "Sid 133-33",
+    "content": "dcerpc2: Connection-oriented DCE/RPC - No transfer syntaxes specified"
+  }
+},
+{
+  "model": "articles.article",
+  "fields": {
+    "title": "Sid 137-1",
+    "content": "spp_ssl: Invalid Client HELLO after Server HELLO Detected"
+  }
+},
+{
+  "model": "articles.article",
+  "fields": {
+    "title": "Sid 140-2",
+    "content": "sip: Empty request URI"
+  }
+},
+{
+  "model": "articles.article",
+  "fields": {
+    "title": "Sid 140-3",
+    "content": "sip: URI is too long"
+  }
+},
+{
+  "model": "tags.tag",
+  "fields": {
+    "name": "21",
+    "topic": ["Ports"],
+    "article": ["Port 21"]
+  }
+},
+{
+  "model": "tags.tag",
+  "fields": {
+    "name": "53",
+    "topic": ["Ports"],
+    "article": ["Port 53"]
+  }
+},
+{
+  "model": "tags.tag",
+  "fields": {
+    "name": "80",
+    "topic": ["Ports"],
+    "article": ["Port 80"]
+  }
+},
+{
+  "model": "tags.tag",
+  "fields": {
+    "name": "137",
+    "topic": ["Ports"],
+    "article": ["Port 137"]
+  }
+},
+{
+  "model": "tags.tag",
+  "fields": {
+    "name": "443",
+    "topic": ["Ports"],
+    "article": ["Port 443"]
+  }
+},
+{
+  "model": "tags.tag",
+  "fields": {
+    "name": "4568",
+    "topic": ["Ports"],
+    "article": ["Port 4568"]
+  }
+},
+{
+  "model": "tags.tag",
+  "fields": {
+    "name": "TCP",
+    "topic": ["Protocols"],
+    "article": ["TCP"]
+  }
+},
+{
+  "model": "tags.tag",
+  "fields": {
+    "name": "UDP",
+    "topic": ["Protocols"],
+    "article": ["UDP"]
+  }
+},
+{
+  "model": "tags.tag",
+  "fields": {
+    "name": "attempted administrator privilege gain",
+    "topic": ["Alert Classifications"],
+    "article": ["Attempted Administrator Privilege Gain"]
+  }
+},
+{
+  "model": "tags.tag",
+  "fields": {
+    "name": "attempted information leak",
+    "topic": ["Alert Classifications"],
+    "article": ["Attempted Information Leak"]
+  }
+},
+{
+  "model": "tags.tag",
+  "fields": {
+    "name": "attempted user privilege gain",
+    "topic": ["Alert Classifications"],
+    "article": ["Attempted User Privilege Gain"]
+  }
+},
+{
+  "model": "tags.tag",
+  "fields": {
+    "name": "generic protocol command decode",
+    "topic": ["Alert Classifications"],
+    "article": ["Generic Protocol Command Decode"]
+  }
+},
+{
+  "model": "tags.tag",
+  "fields": {
+    "name": "misc activity",
+    "topic": ["Alert Classifications"],
+    "article": ["Misc activity"]
+  }
+},
+{
+  "model": "tags.tag",
+  "fields": {
+    "name": "potentially bad traffic",
+    "topic": ["Alert Classifications"],
+    "article": ["Potentially Bad Traffic"]
+  }
+},
+{
+  "model": "tags.tag",
+  "fields": {
+    "name": "unknown traffic",
+    "topic": ["Alert Classifications"],
+    "article": ["Unknown Traffic"]
+  }
+},
+{
+  "model": "tags.tag",
+  "fields": {
+    "name": "1:8478",
+    "topic": ["Snort Signatures"],
+    "article": ["Sid 1-8478"]
+  }
+},
+{
+  "model": "tags.tag",
+  "fields": {
+    "name": "1:31978",
+    "topic": ["Snort Signatures"],
+    "article": ["Sid 1-31978"]
+  }
+},
+{
+  "model": "tags.tag",
+  "fields": {
+    "name": "1:33427",
+    "topic": ["Snort Signatures"],
+    "article": ["Sid 1-33427"]
+  }
+},
+{
+  "model": "tags.tag",
+  "fields": {
+    "name": "1:40356",
+    "topic": ["Snort Signatures"],
+    "article": ["Sid 1-40356"]
+  }
+},
+{
+  "model": "tags.tag",
+  "fields": {
+    "name": "1:40357",
+    "topic": ["Snort Signatures"],
+    "article": ["Sid 1-40357"]
+  }
+},
+{
+  "model": "tags.tag",
+  "fields": {
+    "name": "1:41573",
+    "topic": ["Snort Signatures"],
+    "article": ["Sid 1-41573"]
+  }
+},
+{
+  "model": "tags.tag",
+  "fields": {
+    "name": "1:41818",
+    "topic": ["Snort Signatures"],
+    "article": ["Sid 1-41818"]
+  }
+},
+{
+  "model": "tags.tag",
+  "fields": {
+    "name": "1:41819",
+    "topic": ["Snort Signatures"],
+    "article": ["Sid 1-41819"]
+  }
+},
+{
+  "model": "tags.tag",
+  "fields": {
+    "name": "1:42210",
+    "topic": ["Snort Signatures"],
+    "article": ["Sid 1-42210"]
+  }
+},
+{
+  "model": "tags.tag",
+  "fields": {
+    "name": "119:20",
+    "topic": ["Snort Signatures"],
+    "article": ["Sid 119-20"]
+  }
+},
+{
+  "model": "tags.tag",
+  "fields": {
+    "name": "120:11",
+    "topic": ["Snort Signatures"],
+    "article": ["Sid 120-11"]
+  }
+},
+{
+  "model": "tags.tag",
+  "fields": {
+    "name": "123:12",
+    "topic": ["Snort Signatures"],
+    "article": ["Sid 123-12"]
+  }
+},
+{
+  "model": "tags.tag",
+  "fields": {
+    "name": "124:1",
+    "topic": ["Snort Signatures"],
+    "article": ["Sid 124-1"]
+  }
+},
+{
+  "model": "tags.tag",
+  "fields": {
+    "name": "125:1",
+    "topic": ["Snort Signatures"],
+    "article": ["Sid 125-1"]
+  }
+},
+{
+  "model": "tags.tag",
+  "fields": {
+    "name": "125:2",
+    "topic": ["Snort Signatures"],
+    "article": ["Sid 125-2"]
+  }
+},
+{
+  "model": "tags.tag",
+  "fields": {
+    "name": "125:3",
+    "topic": ["Snort Signatures"],
+    "article": ["Sid 125-3"]
+  }
+},
+{
+  "model": "tags.tag",
+  "fields": {
+    "name": "129:7",
+    "topic": ["Snort Signatures"],
+    "article": ["Sid 129-7"]
+  }
+},
+{
+  "model": "tags.tag",
+  "fields": {
+    "name": "129:11",
+    "topic": ["Snort Signatures"],
+    "article": ["Sid 129-11"]
+  }
+},
+{
+  "model": "tags.tag",
+  "fields": {
+    "name": "129:13",
+    "topic": ["Snort Signatures"],
+    "article": ["Sid 129-13"]
+  }
+},
+{
+  "model": "tags.tag",
+  "fields": {
+    "name": "129:18",
+    "topic": ["Snort Signatures"],
+    "article": ["Sid 129-18"]
+  }
+},
+{
+  "model": "tags.tag",
+  "fields": {
+    "name": "129:19",
+    "topic": ["Snort Signatures"],
+    "article": ["Sid 129-19"]
+  }
+},
+{
+  "model": "tags.tag",
+  "fields": {
+    "name": "133:30",
+    "topic": ["Snort Signatures"],
+    "article": ["Sid 133-30"]
+  }
+},
+{
+  "model": "tags.tag",
+  "fields": {
+    "name": "133:32",
+    "topic": ["Snort Signatures"],
+    "article": ["Sid 133-32"]
+  }
+},
+{
+  "model": "tags.tag",
+  "fields": {
+    "name": "133:33",
+    "topic": ["Snort Signatures"],
+    "article": ["Sid 133-33"]
+  }
+},
+{
+  "model": "tags.tag",
+  "fields": {
+    "name": "137:1",
+    "topic": ["Snort Signatures"],
+    "article": ["Sid 137-1"]
+  }
+},
+{
+  "model": "tags.tag",
+  "fields": {
+    "name": "140:2",
+    "topic": ["Snort Signatures"],
+    "article": ["Sid 140-2"]
+  }
+},
+{
+  "model": "tags.tag",
+  "fields": {
+    "name": "140:3",
+    "topic": ["Snort Signatures"],
+    "article": ["Sid 140-3"]
+  }
+}
+]

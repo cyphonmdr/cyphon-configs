@@ -85,6 +85,28 @@
   }
 },
 {
+  "model": "passports.passport",
+  "fields": {
+    "name": "Twitter",
+    "key": "your-twitter-consumer-key",
+    "secret": "your-twitter-consumer-secret",
+    "access_token": "your-twitter-access-token",
+    "access_token_secret": "your-twitter-access-token-secret",
+    "public": true,
+    "users": []
+  }
+},
+{
+  "model": "plumbers.plumber",
+  "fields": {
+    "name": "Twitter",
+    "endpoints": [
+      ["twitter", "PublicStreamsAPI"]
+    ],
+    "passport": ["Twitter"]
+  }
+},
+{
   "model": "datasieves.datarule",
   "pk": 1,
   "fields": {
@@ -183,6 +205,20 @@
   }
 },
 {
+  "model": "datasieves.datarule",
+  "pk": 8,
+  "fields": {
+    "name": "type_equals_intel",
+    "protocol": null,
+    "value": "intel",
+    "is_regex": false,
+    "case_sensitive": false,
+    "negate": false,
+    "operator": "CharField:^x$",
+    "field_name": "type"
+  }
+},
+{
   "model": "datasieves.datasieve",
   "fields": {
     "name": "high_priority",
@@ -247,6 +283,14 @@
   }
 },
 {
+  "model": "datasieves.datasieve",
+  "fields": {
+    "name": "intel",
+    "logic": "OR",
+    "negate": false
+  }
+},
+{
   "model": "datasieves.datasievenode",
   "fields": {
     "sieve": ["unclassified_mail"],
@@ -291,6 +335,17 @@
   }
 },
 {
+  "model": "datasieves.datasievenode",
+  "fields": {
+    "sieve": ["intel"],
+    "object_id": 8,
+    "content_type": [
+      "datasieves",
+      "datarule"
+    ]
+  }
+},
+{
   "model": "logsieves.logrule",
   "pk": 1,
   "fields": {
@@ -306,7 +361,7 @@
 {
   "model": "logsieves.logsieve",
   "fields": {
-    "name": "IDS_alert",
+    "name": "snort_alert",
     "logic": "AND",
     "negate": false
   }
@@ -314,7 +369,7 @@
 {
   "model": "logsieves.logsievenode",
   "fields": {
-    "sieve": ["IDS_alert"],
+    "sieve": ["snort_alert"],
     "object_id": 1,
     "content_type": [
       "logsieves",
@@ -458,11 +513,29 @@
   }
 },
 {
+  "model": "procedures.protocol",
+  "fields": {
+    "name": "polarity",
+    "package": "sentiment",
+    "module": "sentiment",
+    "function": "get_polarity"
+  }
+},
+{
+  "model": "procedures.protocol",
+  "fields": {
+    "name": "sentiment",
+    "package": "sentiment",
+    "module": "sentiment",
+    "function": "get_sentiment"
+  }
+},
+{
   "model": "procedures.procedure",
   "pk": 1,
   "fields": {
     "name": "geocode_destination_ip",
-    "protocol": ["geoip", "geoip", "get_lng_lat"],
+    "protocol": ["geoip"],
     "field_name": "destination_ip"
   }
 },
@@ -471,8 +544,26 @@
   "pk": 2,
   "fields": {
     "name": "geocode_source_ip",
-    "protocol": ["geoip", "geoip", "get_lng_lat"],
+    "protocol": ["geoip"],
     "field_name": "source_ip"
+  }
+},
+{
+  "model": "procedures.procedure",
+  "pk": 3,
+  "fields": {
+    "name": "text_polarity",
+    "protocol": ["polarity"],
+    "field_name": "text"
+  }
+},
+{
+  "model": "procedures.procedure",
+  "pk": 4,
+  "fields": {
+    "name": "text_sentiment",
+    "protocol": ["sentiment"],
+    "field_name": "text"
   }
 },
 {
@@ -604,6 +695,24 @@
 {
   "model": "bottles.bottlefield",
   "fields": {
+    "field_name": "city_name",
+    "field_type": "CharField",
+    "target_type": "Keyword",
+    "embedded_doc": null
+  }
+},
+{
+  "model": "bottles.bottlefield",
+  "fields": {
+    "field_name": "classification",
+    "field_type": "CharField",
+    "target_type": "Keyword",
+    "embedded_doc": null
+  }
+},
+{
+  "model": "bottles.bottlefield",
+  "fields": {
     "field_name": "client",
     "field_type": "CharField",
     "target_type": null,
@@ -643,6 +752,51 @@
     "field_name": "content",
     "field_type": "TextField",
     "target_type": "Keyword",
+    "embedded_doc": null
+  }
+},
+{
+  "model": "bottles.bottlefield",
+  "fields": {
+    "field_name": "continent_code",
+    "field_type": "CharField",
+    "target_type": null,
+    "embedded_doc": null
+  }
+},
+{
+  "model": "bottles.bottlefield",
+  "fields": {
+    "field_name": "coordinates",
+    "field_type": "PointField",
+    "target_type": "Location",
+    "embedded_doc": null
+  }
+},
+{
+  "model": "bottles.bottlefield",
+  "fields": {
+    "field_name": "country_code2",
+    "field_type": "CharField",
+    "target_type": null,
+    "embedded_doc": null
+  }
+},
+{
+  "model": "bottles.bottlefield",
+  "fields": {
+    "field_name": "country_code3",
+    "field_type": "CharField",
+    "target_type": null,
+    "embedded_doc": null
+  }
+},
+{
+  "model": "bottles.bottlefield",
+  "fields": {
+    "field_name": "country_name",
+    "field_type": "CharField",
+    "target_type": null,
     "embedded_doc": null
   }
 },
@@ -721,6 +875,15 @@
 {
   "model": "bottles.bottlefield",
   "fields": {
+    "field_name": "dma_code",
+    "field_type": "CharField",
+    "target_type": null,
+    "embedded_doc": null
+  }
+},
+{
+  "model": "bottles.bottlefield",
+  "fields": {
     "field_name": "duration",
     "field_type": "CharField",
     "target_type": null,
@@ -748,6 +911,24 @@
 {
   "model": "bottles.bottlefield",
   "fields": {
+    "field_name": "file_mime_type",
+    "field_type": "CharField",
+    "target_type": null,
+    "embedded_doc": null
+  }
+},
+{
+  "model": "bottles.bottlefield",
+  "fields": {
+    "field_name": "file_desc",
+    "field_type": "CharField",
+    "target_type": null,
+    "embedded_doc": null
+  }
+},
+{
+  "model": "bottles.bottlefield",
+  "fields": {
     "field_name": "filename",
     "field_type": "FileField",
     "target_type": null,
@@ -767,7 +948,7 @@
   "model": "bottles.bottlefield",
   "fields": {
     "field_name": "from",
-    "field_type": "EmailField",
+    "field_type": "CharField",
     "target_type": "Account",
     "embedded_doc": null
   }
@@ -776,6 +957,15 @@
   "model": "bottles.bottlefield",
   "fields": {
     "field_name": "fuid",
+    "field_type": "CharField",
+    "target_type": null,
+    "embedded_doc": null
+  }
+},
+{
+  "model": "bottles.bottlefield",
+  "fields": {
+    "field_name": "generator_id",
     "field_type": "CharField",
     "target_type": null,
     "embedded_doc": null
@@ -883,6 +1073,15 @@
 {
   "model": "bottles.bottlefield",
   "fields": {
+    "field_name": "ip",
+    "field_type": "GenericIPAddressField",
+    "target_type": "IPAddress",
+    "embedded_doc": null
+  }
+},
+{
+  "model": "bottles.bottlefield",
+  "fields": {
     "field_name": "ip_address",
     "field_type": "GenericIPAddressField",
     "target_type": "IPAddress",
@@ -921,6 +1120,15 @@
   "fields": {
     "field_name": "last_alert",
     "field_type": "CharField",
+    "target_type": null,
+    "embedded_doc": null
+  }
+},
+{
+  "model": "bottles.bottlefield",
+  "fields": {
+    "field_name": "latitude",
+    "field_type": "FloatField",
     "target_type": null,
     "embedded_doc": null
   }
@@ -967,6 +1175,15 @@
     "field_name": "location",
     "field_type": "PointField",
     "target_type": "Location",
+    "embedded_doc": null
+  }
+},
+{
+  "model": "bottles.bottlefield",
+  "fields": {
+    "field_name": "longitude",
+    "field_type": "FloatField",
+    "target_type": null,
     "embedded_doc": null
   }
 },
@@ -1171,6 +1388,15 @@
 {
   "model": "bottles.bottlefield",
   "fields": {
+    "field_name": "postal_code",
+    "field_type": "CharField",
+    "target_type": null,
+    "embedded_doc": null
+  }
+},
+{
+  "model": "bottles.bottlefield",
+  "fields": {
     "field_name": "priority",
     "field_type": "CharField",
     "target_type": null,
@@ -1306,6 +1532,33 @@
 {
   "model": "bottles.bottlefield",
   "fields": {
+    "field_name": "ref_id",
+    "field_type": "CharField",
+    "target_type": null,
+    "embedded_doc": null
+  }
+},
+{
+  "model": "bottles.bottlefield",
+  "fields": {
+    "field_name": "region_code",
+    "field_type": "CharField",
+    "target_type": null,
+    "embedded_doc": null
+  }
+},
+{
+  "model": "bottles.bottlefield",
+  "fields": {
+    "field_name": "region_name",
+    "field_type": "CharField",
+    "target_type": "Keyword",
+    "embedded_doc": null
+  }
+},
+{
+  "model": "bottles.bottlefield",
+  "fields": {
     "field_name": "rejected",
     "field_type": "CharField",
     "target_type": null,
@@ -1397,6 +1650,42 @@
   "model": "bottles.bottlefield",
   "fields": {
     "field_name": "seen_bytes",
+    "field_type": "CharField",
+    "target_type": null,
+    "embedded_doc": null
+  }
+},
+{
+  "model": "bottles.bottlefield",
+  "fields": {
+    "field_name": "seen_indicator",
+    "field_type": "CharField",
+    "target_type": null,
+    "embedded_doc": null
+  }
+},
+{
+  "model": "bottles.bottlefield",
+  "fields": {
+    "field_name": "seen_indicator_type",
+    "field_type": "CharField",
+    "target_type": null,
+    "embedded_doc": null
+  }
+},
+{
+  "model": "bottles.bottlefield",
+  "fields": {
+    "field_name": "seen_where",
+    "field_type": "CharField",
+    "target_type": null,
+    "embedded_doc": null
+  }
+},
+{
+  "model": "bottles.bottlefield",
+  "fields": {
+    "field_name": "seen_node",
     "field_type": "CharField",
     "target_type": null,
     "embedded_doc": null
@@ -1513,6 +1802,15 @@
 {
   "model": "bottles.bottlefield",
   "fields": {
+    "field_name": "sources",
+    "field_type": "CharField",
+    "target_type": null,
+    "embedded_doc": null
+  }
+},
+{
+  "model": "bottles.bottlefield",
+  "fields": {
     "field_name": "status",
     "field_type": "CharField",
     "target_type": null,
@@ -1595,6 +1893,15 @@
   "model": "bottles.bottlefield",
   "fields": {
     "field_name": "timedout",
+    "field_type": "CharField",
+    "target_type": null,
+    "embedded_doc": null
+  }
+},
+{
+  "model": "bottles.bottlefield",
+  "fields": {
+    "field_name": "timezone",
     "field_type": "CharField",
     "target_type": null,
     "embedded_doc": null
@@ -1747,6 +2054,86 @@
 {
   "model": "bottles.bottle",
   "fields": {
+    "name": "geoip",
+    "fields": [
+      ["city_name"],
+      ["continent_code"],
+      ["location"],
+      ["country_code2"],
+      ["country_name"],
+      ["dma_code"],
+      ["postal_code"],
+      ["region_name"],
+      ["region_code"],
+      ["timezone"]
+    ]
+  }
+},
+{
+  "model": "bottles.bottle",
+  "fields": {
+    "name": "post_content",
+    "fields": [
+      ["image"],
+      ["link"],
+      ["text"],
+      ["title"],
+      ["video"]
+    ]
+  }
+},
+{
+  "model": "bottles.bottle",
+  "fields": {
+    "name": "user",
+    "fields": [
+      ["link"],
+      ["name"],
+      ["profile_pic"],
+      ["ref_id"],
+      ["screen_name"]
+    ]
+  }
+},
+{
+  "model": "bottles.bottlefield",
+  "fields": {
+    "field_name": "dst_geoip",
+    "field_type": "EmbeddedDocument",
+    "target_type": null,
+    "embedded_doc": ["geoip"]
+  }
+},
+{
+  "model": "bottles.bottlefield",
+  "fields": {
+    "field_name": "post_content",
+    "field_type": "EmbeddedDocument",
+    "target_type": null,
+    "embedded_doc": ["post_content"]
+  }
+},
+{
+  "model": "bottles.bottlefield",
+  "fields": {
+    "field_name": "src_geoip",
+    "field_type": "EmbeddedDocument",
+    "target_type": null,
+    "embedded_doc": ["geoip"]
+  }
+},
+{
+  "model": "bottles.bottlefield",
+  "fields": {
+    "field_name": "user",
+    "field_type": "EmbeddedDocument",
+    "target_type": null,
+    "embedded_doc": ["user"]
+  }
+},
+{
+  "model": "bottles.bottle",
+  "fields": {
     "name": "dhcp_log",
     "fields": [
       ["@timestamp"],
@@ -1844,20 +2231,22 @@
 {
   "model": "bottles.bottle",
   "fields": {
-    "name": "ids_alert",
+    "name": "intel",
     "fields": [
       ["@timestamp"],
-      ["category"],
-      ["destination_ip"],
-      ["destination_port"],
-      ["host"],
-      ["priority"],
-      ["protocol"],
-      ["signature"],
-      ["signature_id"],
-      ["source_ip"],
-      ["source_port"],
-      ["sys_timestamp"]
+      ["uid"],
+      ["id_orig_h"],
+      ["id_orig_p"],
+      ["id_resp_h"],
+      ["id_resp_p"],
+      ["fuid"],
+      ["file_mime_type"],
+      ["file_desc"],
+      ["seen_indicator"],
+      ["seen_indicator_type"],
+      ["seen_where"],
+      ["seen_node"],
+      ["sources"]
     ]
   }
 },
@@ -1929,13 +2318,36 @@
 {
   "model": "bottles.bottle",
   "fields": {
-    "name": "post_content",
+    "name": "post",
     "fields": [
-      ["image"],
+      ["created_date"],
       ["link"],
+      ["location"],
+      ["ref_id"],
       ["text"],
-      ["title"],
-      ["video"]
+      ["user"]
+    ]
+  }
+},
+{
+  "model": "bottles.bottle",
+  "fields": {
+    "name": "snort",
+    "fields": [
+      ["@timestamp"],
+      ["classification"],
+      ["destination_ip"],
+      ["destination_port"],
+      ["dst_geoip"],
+      ["host"],
+      ["priority"],
+      ["protocol"],
+      ["signature"],
+      ["signature_id"],
+      ["source_ip"],
+      ["source_port"],
+      ["src_geoip"],
+      ["sys_timestamp"]
     ]
   }
 },
@@ -1973,49 +2385,6 @@
     "fields": [
       ["@timestamp"],
       ["message"]
-    ]
-  }
-},
-{
-  "model": "bottles.bottle",
-  "fields": {
-    "name": "user",
-    "fields": [
-      ["id"],
-      ["link"],
-      ["name"],
-      ["profile_pic"],
-      ["screen_name"]
-    ]
-  }
-},
-{
-  "model": "bottles.bottlefield",
-  "fields": {
-    "field_name": "post_content",
-    "field_type": "EmbeddedDocument",
-    "target_type": null,
-    "embedded_doc": ["post_content"]
-  }
-},
-{
-  "model": "bottles.bottlefield",
-  "fields": {
-    "field_name": "user",
-    "field_type": "EmbeddedDocument",
-    "target_type": null,
-    "embedded_doc": ["user"]
-  }
-},
-{
-  "model": "bottles.bottle",
-  "fields": {
-    "name": "post",
-    "fields": [
-      ["created_date"],
-      ["location"],
-      ["post_content"],
-      ["user"]
     ]
   }
 },
@@ -2058,14 +2427,49 @@
     "object_id": 2
   }
 },
-
+{
+  "model": "labels.labelfield",
+  "fields": {
+    "field_name": "polarity",
+    "field_type": "FloatField",
+    "target_type": null,
+    "content_type": [
+      "procedures",
+      "procedure"
+    ],
+    "object_id": 3
+  }
+},
+{
+  "model": "labels.labelfield",
+  "fields": {
+    "field_name": "sentiment",
+    "field_type": "CharField",
+    "target_type": null,
+    "content_type": [
+      "procedures",
+      "procedure"
+    ],
+    "object_id": 4
+  }
+},
 {
   "model": "labels.label",
   "fields": {
-    "name": "ids_alert",
+    "name": "geoip",
     "fields": [
       ["source_ip_location"],
       ["destination_ip_location"]
+    ]
+  }
+},
+{
+  "model": "labels.label",
+  "fields": {
+    "name": "post",
+    "fields": [
+      ["polarity"],
+      ["sentiment"]
     ]
   }
 },
@@ -2077,7 +2481,6 @@
     "label": null
   }
 },
-
 {
   "model": "containers.container",
   "fields": {
@@ -2097,9 +2500,9 @@
 {
   "model": "containers.container",
   "fields": {
-    "name": "ids_alert",
-    "bottle": ["ids_alert"],
-    "label": ["ids_alert"]
+    "name": "intel",
+    "bottle": ["intel"],
+    "label": null
   }
 },
 {
@@ -2131,6 +2534,14 @@
   "fields": {
     "name": "post",
     "bottle": ["post"],
+    "label": ["post"]
+  }
+},
+{
+  "model": "containers.container",
+  "fields": {
+    "name": "snort",
+    "bottle": ["snort"],
     "label": null
   }
 },
@@ -2204,7 +2615,14 @@
   "model": "warehouses.collection",
   "fields": {
     "warehouse": ["elasticsearch", "cyphon"],
-    "name": "ids"
+    "name": "intel"
+  }
+},
+{
+  "model": "warehouses.collection",
+  "fields": {
+    "warehouse": ["elasticsearch", "cyphon"],
+    "name": "snort"
   }
 },
 {
@@ -2292,9 +2710,9 @@
 {
   "model": "distilleries.distillery",
   "fields": {
-    "collection": ["elasticsearch", "cyphon", "ids"],
-    "container": ["ids_alert"],
-    "is_shell": false
+    "collection": ["elasticsearch", "cyphon", "intel"],
+    "container": ["intel"],
+    "is_shell": true
   }
 },
 {
@@ -2318,6 +2736,14 @@
   "fields": {
     "collection": ["elasticsearch", "cyphon", "social"],
     "container": ["post"],
+    "is_shell": false
+  }
+},
+{
+  "model": "distilleries.distillery",
+  "fields": {
+    "collection": ["elasticsearch", "cyphon", "snort"],
+    "container": ["snort"],
     "is_shell": false
   }
 },
@@ -2382,20 +2808,6 @@
 {
   "model": "tastes.taste",
   "fields": {
-    "container": ["ids_alert"],
-    "author": "host",
-    "title": "signature",
-    "content": "signature_id",
-    "location": "_metadata.source_ip_location",
-    "location_format": "LNG/LAT",
-    "datetime": "sys_timestamp",
-    "date_string": "",
-    "date_format": ""
-  }
-},
-{
-  "model": "tastes.taste",
-  "fields": {
     "container": ["mail"],
     "author": "from",
     "title": "subject",
@@ -2426,11 +2838,25 @@
   "fields": {
     "container": ["post"],
     "author": "user.screen_name",
-    "title": "post_content.text",
-    "content": "post_content.text",
+    "title": "text",
+    "content": "text",
     "location": "location",
     "location_format": "LNG/LAT",
     "datetime": "created_date",
+    "date_string": "",
+    "date_format": ""
+  }
+},
+{
+  "model": "tastes.taste",
+  "fields": {
+    "container": ["snort"],
+    "author": "host",
+    "title": "classification",
+    "content": "signature",
+    "location": "src_geoip.location",
+    "location_format": "LNG/LAT",
+    "datetime": "sys_timestamp",
     "date_string": "",
     "date_format": ""
   }
@@ -2480,14 +2906,25 @@
   "fields": {
     "name": "created_at__DATE",
     "method": "DATE",
-    "regex": "",
-    "formatter": "",
+    "regex": null,
+    "formatter": null,
     "source_fields": "created_at"
   }
 },
 {
   "model": "datacondensers.dataparser",
   "pk": 3,
+  "fields": {
+    "name": "id_str__COPY",
+    "method": "COPY",
+    "regex": null,
+    "formatter": null,
+    "source_fields": "id_str"
+  }
+},
+{
+  "model": "datacondensers.dataparser",
+  "pk": 4,
   "fields": {
     "name": "text__COPY",
     "method": "COPY",
@@ -2498,7 +2935,7 @@
 },
 {
   "model": "datacondensers.dataparser",
-  "pk": 4,
+  "pk": 5,
   "fields": {
     "name": "twitter__content_image",
     "method": "COPY",
@@ -2509,7 +2946,7 @@
 },
 {
   "model": "datacondensers.dataparser",
-  "pk": 5,
+  "pk": 6,
   "fields": {
     "name": "twitter__content_link",
     "method": "COPY",
@@ -2520,7 +2957,7 @@
 },
 {
   "model": "datacondensers.dataparser",
-  "pk": 6,
+  "pk": 7,
   "fields": {
     "name": "twitter__user_link",
     "method": "COPY",
@@ -2531,7 +2968,7 @@
 },
 {
   "model": "datacondensers.dataparser",
-  "pk": 7,
+  "pk": 8,
   "fields": {
     "name": "user.id_str__COPY",
     "method": "COPY",
@@ -2542,7 +2979,7 @@
 },
 {
   "model": "datacondensers.dataparser",
-  "pk": 8,
+  "pk": 9,
   "fields": {
     "name": "user.name__COPY",
     "method": "COPY",
@@ -2553,7 +2990,7 @@
 },
 {
   "model": "datacondensers.dataparser",
-  "pk": 9,
+  "pk": 10,
   "fields": {
     "name": "user.profile_image_url__COPY",
     "method": "COPY",
@@ -2564,7 +3001,7 @@
 },
 {
   "model": "datacondensers.dataparser",
-  "pk": 10,
+  "pk": 11,
   "fields": {
     "name": "user.screen_name__COPY",
     "method": "COPY",
@@ -2577,8 +3014,8 @@
   "model": "datacondensers.datacondenser",
   "pk": 1,
   "fields": {
-    "name": "twitter__content",
-    "bottle": ["post_content"]
+    "name": "twitter__post",
+    "bottle": ["post"]
   }
 },
 {
@@ -2590,19 +3027,23 @@
   }
 },
 {
-  "model": "datacondensers.datacondenser",
-  "pk": 3,
-  "fields": {
-    "name": "twitter__post",
-    "bottle": ["post"]
-  }
-},
-{
   "model": "datacondensers.datafitting",
   "fields": {
     "condenser": ["twitter__post"],
     "target_field": ["created_date"],
     "object_id": 2,
+    "content_type": [
+      "datacondensers",
+      "dataparser"
+    ]
+  }
+},
+{
+  "model": "datacondensers.datafitting",
+  "fields": { 
+    "condenser": ["twitter__post"],
+    "target_field": ["link"],
+    "object_id": 6,
     "content_type": [
       "datacondensers",
       "dataparser"
@@ -2624,32 +3065,8 @@
 {
   "model": "datacondensers.datafitting",
   "fields": {
-    "condenser": ["twitter__content"],
-    "target_field": ["image"],
-    "object_id": 4, 
-    "content_type": [
-      "datacondensers",
-      "dataparser"
-    ]
-  }
-},
-{
-  "model": "datacondensers.datafitting",
-  "fields": { 
-    "condenser": ["twitter__content"],
-    "target_field": ["link"],
-    "object_id": 5,
-    "content_type": [
-      "datacondensers",
-      "dataparser"
-    ]
-  }
-},
-{
-  "model": "datacondensers.datafitting",
-  "fields": {
-    "condenser": ["twitter__content"],
-    "target_field": ["text"],
+    "condenser": ["twitter__post"],
+    "target_field": ["ref_id"],
     "object_id": 3,
     "content_type": [
       "datacondensers",
@@ -2660,8 +3077,20 @@
 {
   "model": "datacondensers.datafitting",
   "fields": {
+    "condenser": ["twitter__post"],
+    "target_field": ["text"],
+    "object_id": 4,
+    "content_type": [
+      "datacondensers",
+      "dataparser"
+    ]
+  }
+},
+{
+  "model": "datacondensers.datafitting",
+  "fields": {
     "condenser": ["twitter__user"],
-    "target_field": ["id"],
+    "target_field": ["link"],
     "object_id": 7,
     "content_type": [
       "datacondensers",
@@ -2673,31 +3102,7 @@
   "model": "datacondensers.datafitting",
   "fields": {
     "condenser": ["twitter__user"],
-    "target_field": ["link"],
-    "object_id": 6,
-    "content_type": [
-      "datacondensers",
-      "dataparser"
-    ]
-  }
-},
-{
-  "model": "datacondensers.datafitting",
-  "fields": {
-    "condenser": ["twitter__user"],
     "target_field": ["name"],
-    "object_id": 8,
-    "content_type": [
-      "datacondensers",
-      "dataparser"
-    ]
-  }
-},
-{
-  "model": "datacondensers.datafitting",
-  "fields": {
-    "condenser": ["twitter__user"],
-    "target_field": ["profile_pic"],
     "object_id": 9,
     "content_type": [
       "datacondensers",
@@ -2709,7 +3114,7 @@
   "model": "datacondensers.datafitting",
   "fields": {
     "condenser": ["twitter__user"],
-    "target_field": ["screen_name"],
+    "target_field": ["profile_pic"],
     "object_id": 10,
     "content_type": [
       "datacondensers",
@@ -2720,12 +3125,24 @@
 {
   "model": "datacondensers.datafitting",
   "fields": {
-    "condenser": ["twitter__post"],
-    "target_field": ["post_content"],
-    "object_id": 1,
+    "condenser": ["twitter__user"],
+    "target_field": ["ref_id"],
+    "object_id": 8,
     "content_type": [
       "datacondensers",
-      "datacondenser"
+      "dataparser"
+    ]
+  }
+},
+{
+  "model": "datacondensers.datafitting",
+  "fields": {
+    "condenser": ["twitter__user"],
+    "target_field": ["screen_name"],
+    "object_id": 11,
+    "content_type": [
+      "datacondensers",
+      "dataparser"
     ]
   }
 },
@@ -2907,8 +3324,8 @@
 {
   "model": "logcondensers.logcondenser",
   "fields": {
-    "name": "IDS_alert",
-    "bottle": ["ids_alert"]
+    "name": "snort_alert",
+    "bottle": ["snort"]
   }
 },
 {
@@ -2921,7 +3338,7 @@
 {
   "model": "logcondensers.logfitting",
   "fields": {
-    "condenser": ["IDS_alert"],
+    "condenser": ["snort_alert"],
     "target_field": ["category"],
     "object_id": 1,
     "content_type": [
@@ -2933,7 +3350,7 @@
 {
   "model": "logcondensers.logfitting",
   "fields": {
-    "condenser": ["IDS_alert"],
+    "condenser": ["snort_alert"],
     "target_field": ["destination_ip"],
     "object_id": 4,
     "content_type": [
@@ -2945,7 +3362,7 @@
 {
   "model": "logcondensers.logfitting",
   "fields": {
-    "condenser": ["IDS_alert"],
+    "condenser": ["snort_alert"],
     "object_id": 5,
     "target_field": ["destination_port"],
     "content_type": [
@@ -2957,7 +3374,7 @@
 {
   "model": "logcondensers.logfitting",
   "fields": {
-    "condenser": ["IDS_alert"],
+    "condenser": ["snort_alert"],
     "target_field": ["host"],
     "object_id": 6,
     "content_type": [
@@ -2969,7 +3386,7 @@
 {
   "model": "logcondensers.logfitting",
   "fields": {
-    "condenser": ["IDS_alert"],
+    "condenser": ["snort_alert"],
     "target_field": ["priority"],
     "object_id": 8,
     "content_type": [
@@ -2981,7 +3398,7 @@
 {
   "model": "logcondensers.logfitting",
   "fields": {
-    "condenser": ["IDS_alert"],
+    "condenser": ["snort_alert"],
     "target_field": ["protocol"],
     "object_id": 9,
     "content_type": [
@@ -2993,7 +3410,7 @@
 {
   "model": "logcondensers.logfitting",
   "fields": {
-    "condenser": ["IDS_alert"],
+    "condenser": ["snort_alert"],
     "target_field": ["signature"],
     "object_id": 10,
     "content_type": [
@@ -3005,7 +3422,7 @@
 {
   "model": "logcondensers.logfitting",
   "fields": {
-    "condenser": ["IDS_alert"],
+    "condenser": ["snort_alert"],
     "target_field": ["signature_id"],
     "object_id": 11,
     "content_type": [
@@ -3017,7 +3434,7 @@
 {
   "model": "logcondensers.logfitting",
   "fields": {
-    "condenser": ["IDS_alert"],
+    "condenser": ["snort_alert"],
     "target_field": ["source_ip"],
     "object_id": 12,
     "content_type": [
@@ -3029,7 +3446,7 @@
 {
   "model": "logcondensers.logfitting",
   "fields": {
-    "condenser": ["IDS_alert"],
+    "condenser": ["snort_alert"],
     "target_field": ["source_port"],
     "object_id": 13,
     "content_type": [
@@ -3041,7 +3458,7 @@
 {
   "model": "logcondensers.logfitting",
   "fields": {
-    "condenser": ["IDS_alert"],
+    "condenser": ["snort_alert"],
     "target_field": ["sys_timestamp"],
     "object_id": 2,
     "content_type": [
@@ -3065,7 +3482,7 @@
 {
   "model": "logmungers.logmunger",
   "fields": {
-    "name": "default_log",
+    "name": "default",
     "distillery": ["elasticsearch", "cyphon", "default_log"],
     "condenser": ["syslog"]
   }
@@ -3073,17 +3490,17 @@
 {
   "model": "logmungers.logmunger",
   "fields": {
-    "name": "IDS_alert",
-    "distillery": ["elasticsearch", "cyphon", "ids"],
-    "condenser": ["IDS_alert"]
+    "name": "snort_alert",
+    "distillery": ["elasticsearch", "cyphon", "snort"],
+    "condenser": ["snort_alert"]
   }
 },
 {
   "model": "logchutes.logchute",
   "fields": {
     "enabled": false,
-    "sieve": ["IDS_alert"],
-    "munger": ["default_log"]
+    "sieve": ["snort_alert"],
+    "munger": ["default"]
   }
 },
 {
@@ -3288,7 +3705,7 @@
 {
   "model": "mailmungers.mailmunger",
   "fields": {
-    "name": "default_mail",
+    "name": "default",
     "distillery": ["elasticsearch", "cyphon", "default_mail"],
     "condenser": ["mail"]
   }
@@ -3298,14 +3715,14 @@
   "fields": {
     "enabled": true,
     "sieve": null,
-    "munger": ["default_mail"]
+    "munger": ["default"]
   }
 },
 {
   "model": "contexts.context",
   "fields": {
     "name": "DNS log",
-    "primary_distillery": ["elasticsearch", "cyphon", "ids"],
+    "primary_distillery": ["elasticsearch", "cyphon", "snort"],
     "related_distillery": ["elasticsearch", "cyphon", "dns"],
     "before_time_interval": 30,
     "before_time_unit": "s",
@@ -3318,7 +3735,7 @@
   "model": "contexts.context",
   "fields": {
     "name": "Files log",
-    "primary_distillery": ["elasticsearch", "cyphon", "ids"],
+    "primary_distillery": ["elasticsearch", "cyphon", "snort"],
     "related_distillery": ["elasticsearch", "cyphon", "files"],
     "before_time_interval": 30,
     "before_time_unit": "s",
@@ -3331,7 +3748,7 @@
   "model": "contexts.context",
   "fields": {
     "name": "HTTP log",
-    "primary_distillery": ["elasticsearch", "cyphon", "ids"],
+    "primary_distillery": ["elasticsearch", "cyphon", "snort"],
     "related_distillery": ["elasticsearch", "cyphon", "http"],
     "before_time_interval": 30,
     "before_time_unit": "s",
@@ -3343,9 +3760,9 @@
 {
   "model": "contexts.context",
   "fields": {
-    "name": "related IDS alerts",
-    "primary_distillery": ["elasticsearch", "cyphon", "ids"],
-    "related_distillery": ["elasticsearch", "cyphon", "ids"],
+    "name": "related snort alerts",
+    "primary_distillery": ["elasticsearch", "cyphon", "snort"],
+    "related_distillery": ["elasticsearch", "cyphon", "snort"],
     "before_time_interval": 30,
     "before_time_unit": "m",
     "after_time_interval": 30,
@@ -3357,7 +3774,7 @@
   "model": "contexts.context",
   "fields": {
     "name": "Nessus scans",
-    "primary_distillery": ["elasticsearch", "cyphon", "ids"],
+    "primary_distillery": ["elasticsearch", "cyphon", "snort"],
     "related_distillery": ["elasticsearch", "cyphon", "nessus"],
     "before_time_interval": 7,
     "before_time_unit": "d",
@@ -3370,7 +3787,7 @@
   "model": "contexts.context",
   "fields": {
     "name": "SSL log",
-    "primary_distillery": ["elasticsearch", "cyphon", "ids"],
+    "primary_distillery": ["elasticsearch", "cyphon", "snort"],
     "related_distillery": ["elasticsearch", "cyphon", "ssl"],
     "before_time_interval": 30,
     "before_time_unit": "s",
@@ -3383,7 +3800,7 @@
   "model": "contexts.context",
   "fields": {
     "name": "Syslog",
-    "primary_distillery": ["elasticsearch", "cyphon", "ids"],
+    "primary_distillery": ["elasticsearch", "cyphon", "snort"],
     "related_distillery": ["elasticsearch", "cyphon", "syslog"],
     "before_time_interval": 5,
     "before_time_unit": "m",
@@ -3395,7 +3812,7 @@
 {
   "model": "contexts.contextfilter",
   "fields": {
-    "context": ["related IDS alerts", "elasticsearch", "cyphon", "ids"],
+    "context": ["related snort alerts", "elasticsearch", "cyphon", "snort"],
     "value_field": "signature_id",
     "search_field": "signature_id",
     "operator": "eq"
@@ -3404,7 +3821,7 @@
 {
   "model": "contexts.contextfilter",
   "fields": {
-    "context": ["related IDS alerts", "elasticsearch", "cyphon", "ids"],
+    "context": ["related snort alerts", "elasticsearch", "cyphon", "snort"],
     "value_field": "source_ip",
     "search_field": "source_ip",
     "operator": "eq"
@@ -3413,7 +3830,7 @@
 {
   "model": "contexts.contextfilter",
   "fields": {
-    "context": ["Files log", "elasticsearch", "cyphon", "ids"],
+    "context": ["Files log", "elasticsearch", "cyphon", "snort"],
     "value_field": "destination_ip",
     "search_field": "tx_hosts",
     "operator": "in"
@@ -3422,7 +3839,7 @@
 {
   "model": "contexts.contextfilter",
   "fields": {
-    "context": ["Files log", "elasticsearch", "cyphon", "ids"],
+    "context": ["Files log", "elasticsearch", "cyphon", "snort"],
     "value_field": "source_ip",
     "search_field": "rx_hosts",
     "operator": "in"
@@ -3431,7 +3848,7 @@
 {
   "model": "contexts.contextfilter",
   "fields": {
-    "context": ["DNS log", "elasticsearch", "cyphon", "ids"],
+    "context": ["DNS log", "elasticsearch", "cyphon", "snort"],
     "value_field": "destination_ip",
     "search_field": "id_resp_h",
     "operator": "eq"
@@ -3440,7 +3857,7 @@
 {
   "model": "contexts.contextfilter",
   "fields": {
-    "context": ["DNS log", "elasticsearch", "cyphon", "ids"],
+    "context": ["DNS log", "elasticsearch", "cyphon", "snort"],
     "value_field": "source_ip",
     "search_field": "id_orig_h",
     "operator": "eq"
@@ -3449,7 +3866,7 @@
 {
   "model": "contexts.contextfilter",
   "fields": {
-    "context": ["SSL log", "elasticsearch", "cyphon", "ids"],
+    "context": ["SSL log", "elasticsearch", "cyphon", "snort"],
     "value_field": "destination_ip",
     "search_field": "id_orig_h",
     "operator": "eq"
@@ -3458,7 +3875,7 @@
 {
   "model": "contexts.contextfilter",
   "fields": {
-    "context": ["SSL log", "elasticsearch", "cyphon", "ids"],
+    "context": ["SSL log", "elasticsearch", "cyphon", "snort"],
     "value_field": "source_ip",
     "search_field": "id_resp_h",
     "operator": "eq"
@@ -3467,7 +3884,7 @@
 {
   "model": "contexts.contextfilter",
   "fields": {
-    "context": ["HTTP log", "elasticsearch", "cyphon", "ids"],
+    "context": ["HTTP log", "elasticsearch", "cyphon", "snort"],
     "value_field": "destination_ip",
     "search_field": "id_orig_h",
     "operator": "eq"
@@ -3476,7 +3893,7 @@
 {
   "model": "contexts.contextfilter",
   "fields": {
-    "context": ["HTTP log", "elasticsearch", "cyphon", "ids"],
+    "context": ["HTTP log", "elasticsearch", "cyphon", "snort"],
     "value_field": "source_ip",
     "search_field": "id_resp_h",
     "operator": "eq"
@@ -3485,7 +3902,7 @@
 {
   "model": "contexts.contextfilter",
   "fields": {
-    "context": ["HTTP log", "elasticsearch", "cyphon", "ids"],
+    "context": ["HTTP log", "elasticsearch", "cyphon", "snort"],
     "value_field": "source_ip",
     "search_field": "id_orig_h",
     "operator": "eq"
@@ -3494,7 +3911,7 @@
 {
   "model": "contexts.contextfilter",
   "fields": {
-    "context": ["HTTP log", "elasticsearch", "cyphon", "ids"],
+    "context": ["HTTP log", "elasticsearch", "cyphon", "snort"],
     "value_field": "destination_ip",
     "search_field": "id_resp_h",
     "operator": "eq"
@@ -3511,7 +3928,15 @@
 {
   "model": "watchdogs.watchdog",
   "fields": {
-    "name": "IDS",
+    "name": "intel",
+    "enabled": true,
+    "groups": []
+  }
+},
+{
+  "model": "watchdogs.watchdog",
+  "fields": {
+    "name": "snort",
     "enabled": true,
     "groups": []
   }
@@ -3555,7 +3980,16 @@
 {
   "model": "watchdogs.trigger",
   "fields": {
-    "watchdog": ["IDS"],
+    "watchdog": ["intel"],
+    "sieve": ["intel"],
+    "alert_level": "HIGH",
+    "rank": 0
+  }
+},
+{
+  "model": "watchdogs.trigger",
+  "fields": {
+    "watchdog": ["snort"],
     "sieve": ["priority_equals_1"],
     "alert_level": "HIGH",
     "rank": 0
@@ -3564,7 +3998,7 @@
 {
   "model": "watchdogs.trigger",
   "fields": {
-    "watchdog": ["IDS"],
+    "watchdog": ["snort"],
     "sieve": ["priority_equals_2"],
     "alert_level": "MEDIUM",
     "rank": 10
@@ -3573,7 +4007,7 @@
 {
   "model": "watchdogs.trigger",
   "fields": {
-    "watchdog": ["IDS"],
+    "watchdog": ["snort"],
     "sieve": ["priority_equals_3"],
     "alert_level": "LOW",
     "rank": 20
@@ -3582,7 +4016,7 @@
 {
   "model": "watchdogs.trigger",
   "fields": {
-    "watchdog": ["IDS"],
+    "watchdog": ["snort"],
     "sieve": ["info_priority"],
     "alert_level": "INFO",
     "rank": 30
@@ -3591,10 +4025,241 @@
 {
   "model": "watchdogs.muzzle",
   "fields": {
-    "watchdog": ["IDS"],
+    "watchdog": ["snort"],
     "matching_fields": "signature_id,source_ip",
     "time_interval": 30,
     "time_unit": "m",
+    "enabled": true
+  }
+},
+{
+  "model": "monitors.monitor",
+  "fields": {
+    "name": "intel",
+    "enabled": true,
+    "time_interval": 1,
+    "time_unit": "d",
+    "alerts_enabled": true,
+    "repeating_alerts": true,
+    "alert_level": "HIGH",
+    "groups": [],
+    "distilleries": [
+      ["elasticsearch", "cyphon", "intel"]
+    ],
+    "created_date": "2017-05-15 08:30:00.000000+00:00",
+    "last_updated": "2017-05-15 08:30:00.000000+00:00"
+  }
+},
+{
+  "model": "monitors.monitor",
+  "fields": {
+    "name": "snort",
+    "enabled": true,
+    "time_interval": 1,
+    "time_unit": "d",
+    "alerts_enabled": true,
+    "repeating_alerts": true,
+    "alert_level": "HIGH",
+    "groups": [],
+    "distilleries": [
+      ["elasticsearch", "cyphon", "snort"]
+    ],
+    "created_date": "2017-05-15 08:30:00.000000+00:00",
+    "last_updated": "2017-05-15 08:30:00.000000+00:00"
+  }
+},
+{
+  "model": "followees.followee",
+  "pk": 1,
+  "fields": {
+    "nickname": "Cyphon",
+    "associates": []
+  }
+},
+{
+  "model": "followees.legalname",
+  "fields": {
+    "followee": ["Cyphon"],
+    "first": "Cyphon",
+    "middle": "",
+    "last": "Project"
+  }
+},
+{
+  "model": "followees.account",
+  "fields": {
+    "followee": ["Cyphon"],
+    "platform": ["twitter"],
+    "user_id": "834789750624116736",
+    "username": "cyphonproject"
+  }
+},
+{
+  "model": "locations.location",
+  "pk": 1,
+  "fields": {
+    "name": "Area 51",
+    "geom": "SRID=4326;POLYGON ((-115.9983058092398 37.46749282176071, -115.5849452135966 37.46749282176071, -115.5821986315576 37.09926846840872, -115.9941859361903 37.10036378591097, -115.9983058092398 37.46749282176071))",
+    "buffer_m": 0,
+    "editable": true
+  }
+},
+{
+  "model": "searchterms.searchterm",
+  "pk": 1,
+  "fields": {
+    "term": "zeroday"
+  }
+},
+{
+  "model": "filters.filter",
+  "fields": {
+    "content_type": [
+      "followees",
+      "followee"
+    ],
+    "object_id": 1,
+    "enabled": true,
+    "date_created": "2017-05-15 08:30:00.000000+00:00",
+    "last_used": "2017-05-15 08:30:00.000000+00:00"
+  }
+},
+{
+  "model": "filters.filter",
+  "fields": {
+    "content_type": [
+      "locations",
+      "location"
+    ],
+    "object_id": 1,
+    "enabled": true,
+    "date_created": "2017-05-15 08:30:00.000000+00:00",
+    "last_used": "2017-05-15 08:30:00.000000+00:00"
+  }
+},
+{
+  "model": "filters.filter",
+  "fields": {
+    "content_type": [
+      "searchterms",
+      "searchterm"
+    ],
+    "object_id": 1,
+    "enabled": true,
+    "date_created": "2017-05-15 08:30:00.000000+00:00",
+    "last_used": "2017-05-15 08:30:00.000000+00:00"
+  }
+},
+{
+  "model": "tags.topic",
+  "fields": {
+    "name": "Alert Classifications"
+  }
+},
+{
+  "model": "tags.topic",
+  "fields": {
+    "name": "Ports"
+  }
+},
+{
+  "model": "tags.topic",
+  "fields": {
+    "name": "Protocols"
+  }
+},
+{
+  "model": "tags.topic",
+  "fields": {
+    "name": "Intel Indicator Types"
+  }
+},
+{
+  "model": "tags.topic",
+  "fields": {
+    "name": "Intel Indicators"
+  }
+},
+{
+  "model": "tags.topic",
+  "fields": {
+    "name": "Snort Signatures"
+  }
+},
+{
+  "model": "tags.datatagger",
+  "fields": {
+    "container": ["intel"],
+    "field_name": "id_resp_p",
+    "topics": [["Ports"]],
+    "exact_match": true,
+    "create_tags": true,
+    "enabled": true
+  }
+},
+{
+  "model": "tags.datatagger",
+  "fields": {
+    "container": ["intel"],
+    "field_name": "seen_indicator",
+    "topics": [["Intel Indicators"]],
+    "exact_match": true,
+    "create_tags": true,
+    "enabled": true
+  }
+},
+{
+  "model": "tags.datatagger",
+  "fields": {
+    "container": ["intel"],
+    "field_name": "seen_indicator_type",
+    "topics": [["Intel Indicator Types"]],
+    "exact_match": true,
+    "create_tags": true,
+    "enabled": true
+  }
+},
+{
+  "model": "tags.datatagger",
+  "fields": {
+    "container": ["snort"],
+    "field_name": "classification",
+    "topics": [["Alert Classifications"]],
+    "exact_match": true,
+    "create_tags": true,
+    "enabled": true
+  }
+},
+{
+  "model": "tags.datatagger",
+  "fields": {
+    "container": ["snort"],
+    "field_name": "destination_port",
+    "topics": [["Ports"]],
+    "exact_match": true,
+    "create_tags": true,
+    "enabled": true
+  }
+},
+{
+  "model": "tags.datatagger",
+  "fields": {
+    "container": ["snort"],
+    "field_name": "protocol",
+    "topics": [["Protocols"]],
+    "exact_match": true,
+    "create_tags": true,
+    "enabled": true
+  }
+},
+{
+  "model": "tags.datatagger",
+  "fields": {
+    "container": ["snort"],
+    "field_name": "signature_id",
+    "topics": [["Snort Signatures"]],
+    "exact_match": true,
+    "create_tags": true,
     "enabled": true
   }
 }
